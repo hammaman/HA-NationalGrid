@@ -81,6 +81,17 @@ class NationalGridDemandForecast(TypedDict):
     current_value: int
     forecast: list[NationalGridDemandForecastItem]
 
+# New classes for Carbon Intensity Forecast
+class NationalGridCarbonIntensityForecastItem(TypedDict):
+    start_time: datetime
+    end_time: datetime
+    forecastintensity: int
+    forecastintensitydesc: str
+
+class NationalGridCarbonIntensityForecast(TypedDict):
+    forecast: list[NationalGridCarbonIntensityForecastItem]
+
+# End of new classes
 
 class DFSRequirementItem(TypedDict):
     start_time: datetime
@@ -98,6 +109,8 @@ class DFSRequirements(TypedDict):
 class NationalGridData(TypedDict):
     sell_price: float
     carbon_intensity: int
+    # Added
+    carbon_intensity_forecast: NationalGridCarbonIntensityForecast
 
     grid_frequency: float
 

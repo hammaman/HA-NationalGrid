@@ -33,6 +33,9 @@ from ..models import (
     NationalGridWindForecast,
     NationalGridWindForecastItem,
     NationalGridWindForecastLongTerm,
+    # Added
+    NationalGridCarbonIntensityForecastItem,
+    NationalGridCarbonIntensityForecast
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -112,6 +115,16 @@ def get_data(
     carbon_intensity = obtain_data_with_fallback(
         current_data, "carbon_intensity", get_carbon_intensity, now_utc_full
     )
+
+    # Added
+    carbon_intensity_forecast = obtain_data_with_fallback(
+        current_data,
+        "carbon_intensity_forecast",
+        get_forecast_carbon_intensity,
+        now_utc_full
+    )
+
+    # End of addition
 
     grid_generation = obtain_data_with_fallback(
         current_data,
@@ -949,6 +962,34 @@ def get_carbon_intensity(now_utc_full: datetime) -> int:
             return int(item["intensity"]["actual"])
     return None
 
+# Added new functionality to collect the forecasted carbon intensity for the next 24 hours
+def get_forecast_carbon_intensity(now_utc_full: datetime, ) -> NationalGridCarbonIntensityForecast:
+    formatted_datetime = now_utc_full.strftime("%Y-%m-%dT%H:%MZ")
+    url = (
+        "https://api.carbonintensity.org.uk/intensity/" + formatted_datetime + "/fw24h"
+    )
+    response = requests.get(url, timeout=10)
+    data = json.loads(response.content)
+    if "data" not in data:
+        raise UnexpectedDataError(url)
+
+    ci_forecast = []
+
+    for item in data["data"]:
+        if item["intensity"]["forecast"] is not None:
+            ci_forecast.append(NationalGridCarbonIntensityForecastItem(
+                start_time=datetime.strptime(
+                item["from"], "%Y-%m-%dT%H:%M"
+                ).replace(tzinfo=tz.UTC),
+                end_time=datetime.strptime(
+                item["to"], "%Y-%m-%dT%H:%M"
+                ).replace(tzinfo=tz.UTC),
+                forecastintensity=item["intensity"]["forecast"],
+                forecastintensitydesc=item["intensity"]["index"]))
+
+    return ci_forecast
+
+# End of new functionality
 
 def get_generation(utc_now: datetime) -> NationalGridGeneration:
     utc_now_formatted = utc_now.strftime("%Y-%m-%dT%H:%M:%SZ")

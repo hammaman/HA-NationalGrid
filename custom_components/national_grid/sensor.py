@@ -418,6 +418,15 @@ SENSORS_GENERATION = (
         native_unit_of_measurement="%",
         icon="mdi:help",
     ),
+    #Added
+    NationalGridSensorEntityDescription(
+        key="grid_generation.carbon_intensity",
+        name="Forecast Carbon Intensity",
+        unique_id="forecast_carbon_intensity",
+        native_unit_of_measurement="gCO2eq/kWh",
+        icon="mdi:molecule-co2",
+        extra_attributes_key="grid_generation",
+    )
 )
 
 
