@@ -229,7 +229,7 @@ def get_data(
         total_demand_mwh=total_demand_mwh,
         total_transfers_mwh=total_transfers_mwh,
         dfs_requirements=dfs_requirements,
-        carbon_intensity_forecast=carbon_intensity_forecast
+        carbon_intensity_forecast=carbon_intensity_forecast,
     )
 
 
