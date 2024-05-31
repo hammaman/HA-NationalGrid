@@ -425,7 +425,7 @@ SENSORS_GENERATION = (
         unique_id="forecast_carbon_intensity",
         native_unit_of_measurement="gCO2eq/kWh",
         icon="mdi:molecule-co2",
-        extra_attributes_key="grid_generation",
+        extra_attributes_key="carbon_intensity_forecast",
     )
 )
 
