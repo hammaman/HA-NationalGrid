@@ -120,7 +120,7 @@ def get_data(
     carbon_intensity_forecast = obtain_data_with_fallback(
         current_data,
         "carbon_intensity_forecast",
-        get_forecast_carbon_intensity,
+        get_carbon_intensity_forecast,
         now_utc_full
     )
 
@@ -229,6 +229,7 @@ def get_data(
         total_demand_mwh=total_demand_mwh,
         total_transfers_mwh=total_transfers_mwh,
         dfs_requirements=dfs_requirements,
+        carbon_intensity_forecast=carbon_intensity_forecast
     )
 
 
@@ -963,7 +964,7 @@ def get_carbon_intensity(now_utc_full: datetime) -> int:
     return None
 
 # Added new functionality to collect the forecasted carbon intensity for the next 24 hours
-def get_forecast_carbon_intensity(now_utc_full: datetime, ) -> NationalGridCarbonIntensityForecast:
+def get_carbon_intensity_forecast(now_utc_full: datetime, ) -> NationalGridCarbonIntensityForecast:
     formatted_datetime = now_utc_full.strftime("%Y-%m-%dT%H:%MZ")
     url = (
         "https://api.carbonintensity.org.uk/intensity/" + formatted_datetime + "/fw24h"

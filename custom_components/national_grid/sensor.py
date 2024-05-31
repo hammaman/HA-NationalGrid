@@ -425,7 +425,6 @@ SENSORS_GENERATION = (
         unique_id="carbon_intensity_forecast",
         native_unit_of_measurement="gCO2eq/kWh",
         icon="mdi:molecule-co2",
-        state_class=SensorStateClass.MEASUREMENT,
         extra_attributes_key="carbon_intensity_forecast",
     )
 )
