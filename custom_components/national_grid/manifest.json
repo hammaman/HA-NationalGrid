@@ -3,7 +3,7 @@
     "name": "National Grid",
     "documentation": "https://github.com/JRascagneres/HA-NationalGrid",
     "issue_tracker": "https://github.com/JRascagneres/HA-NationalGrid",
-    "codeowners": ["@JRascagneres"],
+    "codeowners": ["@JRascagneres", "@hammaman"],
     "dependencies": [],
     "iot_class": "cloud_polling",
     "requirements": [],
