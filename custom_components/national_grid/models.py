@@ -84,9 +84,7 @@ class NationalGridDemandForecast(TypedDict):
 # New classes for Carbon Intensity Forecast
 class NationalGridCarbonIntensityForecastItem(TypedDict):
     start_time: datetime
-    end_time: datetime
     forecastintensity: int
-    forecastintensitydesc: str
 
 class NationalGridCarbonIntensityForecast(TypedDict):
     forecast: list[NationalGridCarbonIntensityForecastItem]

@@ -35,7 +35,7 @@ from ..models import (
     NationalGridWindForecastLongTerm,
     # Added
     NationalGridCarbonIntensityForecastItem,
-    NationalGridCarbonIntensityForecast
+    NationalGridCarbonIntensityForecast,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -964,7 +964,7 @@ def get_carbon_intensity(now_utc_full: datetime) -> int:
     return None
 
 # Added new functionality to collect the forecasted carbon intensity for the next 24 hours
-def get_carbon_intensity_forecast(now_utc_full: datetime, ) -> NationalGridCarbonIntensityForecast:
+def get_carbon_intensity_forecast(now_utc_full: datetime) -> NationalGridCarbonIntensityForecast:
     formatted_datetime = now_utc_full.strftime("%Y-%m-%dT%H:%MZ")
     url = (
         "https://api.carbonintensity.org.uk/intensity/" + formatted_datetime + "/fw24h"
@@ -982,11 +982,7 @@ def get_carbon_intensity_forecast(now_utc_full: datetime, ) -> NationalGridCarbo
                 start_time=datetime.strptime(
                 item["from"], "%Y-%m-%dT%H:%M"
                 ).replace(tzinfo=tz.UTC),
-                end_time=datetime.strptime(
-                item["to"], "%Y-%m-%dT%H:%M"
-                ).replace(tzinfo=tz.UTC),
-                forecastintensity=item["intensity"]["forecast"],
-                forecastintensitydesc=item["intensity"]["index"]))
+                forecastintensity=item["intensity"]["forecast"])
 
     return ci_forecast
 
