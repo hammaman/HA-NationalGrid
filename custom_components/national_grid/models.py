@@ -87,6 +87,7 @@ class NationalGridCarbonIntensityForecastItem(TypedDict):
     carbon_intensity: int
 
 class NationalGridCarbonIntensityForecast(TypedDict):
+    current_value: int
     forecast: list[NationalGridCarbonIntensityForecastItem]
 
 # End of new classes

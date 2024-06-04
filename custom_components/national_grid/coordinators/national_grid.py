@@ -986,7 +986,9 @@ def get_carbon_intensity_forecast(now_utc_full: datetime) -> NationalGridCarbonI
                 carbon_intensity=item["intensity"]["forecast"]))
             _LOGGER.debug(msg="Found forecast intensity" + str(item["intensity"]["forecast"]))
 
-    return ci_forecast
+    current_value = get_carbon_intensity(now_utc_full)
+
+    return (current_value, ci_forecast)
 
 # End of new functionality
 

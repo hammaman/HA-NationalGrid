@@ -420,7 +420,7 @@ SENSORS_GENERATION = (
     ),
     #Added
     NationalGridSensorEntityDescription(
-        key=None,
+        key="carbon_intensity_forecast.current_value",
         name="Carbon Intensity Forecast",
         unique_id="carbon_intensity_forecast",
         native_unit_of_measurement="gCO2eq/kWh",
