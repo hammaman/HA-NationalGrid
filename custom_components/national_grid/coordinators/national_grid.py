@@ -982,7 +982,7 @@ def get_carbon_intensity_forecast(now_utc_full: datetime) -> NationalGridCarbonI
                 start_time=datetime.strptime(
                 item["from"], "%Y-%m-%dT%H:%M"
                 ).replace(tzinfo=tz.UTC),
-                forecastintensity=item["intensity"]["forecast"])
+                forecastintensity=item["intensity"]["forecast"]))
 
     return ci_forecast
 
