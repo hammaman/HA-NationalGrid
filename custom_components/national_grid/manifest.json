@@ -1,12 +1,12 @@
 {
     "domain": "national_grid",
     "name": "National Grid",
-    "documentation": "https://github.com/JRascagneres/HA-NationalGrid",
-    "issue_tracker": "https://github.com/JRascagneres/HA-NationalGrid",
+    "documentation": "https://github.com/hammaman/HA-NationalGrid",
+    "issue_tracker": "https://github.com/hammaman/HA-NationalGrid",
     "codeowners": ["@JRascagneres", "@hammaman"],
     "dependencies": [],
     "iot_class": "cloud_polling",
     "requirements": [],
-    "version": "0.0.42",
+    "version": "0.0.43",
     "config_flow": true
   }

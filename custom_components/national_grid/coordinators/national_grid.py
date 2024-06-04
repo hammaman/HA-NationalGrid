@@ -981,7 +981,7 @@ def get_carbon_intensity_forecast(now_utc_full: datetime) -> NationalGridCarbonI
         if item["intensity"]["forecast"] is not None:
             ci_forecast.append(NationalGridCarbonIntensityForecastItem(
                 start_time=datetime.strptime(
-                item["from"], "%Y-%m-%dT%H:%M"
+                item["from"], "%Y-%m-%dT%H:%MZ"
                 ).replace(tzinfo=tz.UTC),
                 carbon_intensity=item["intensity"]["forecast"]))
             _LOGGER.debug(msg="Found forecast intensity" + str(item["intensity"]["forecast"]))
