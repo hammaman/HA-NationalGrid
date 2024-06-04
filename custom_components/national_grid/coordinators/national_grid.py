@@ -967,9 +967,10 @@ def get_carbon_intensity(now_utc_full: datetime) -> int:
 def get_carbon_intensity_forecast(now_utc_full: datetime) -> NationalGridCarbonIntensityForecast:
     formatted_datetime = now_utc_full.strftime("%Y-%m-%dT%H:%MZ")
     url = (
-        "https://api.carbonintensity.org.uk/intensity/" + formatted_datetime + "/fw24h"
+        "https://api.carbonintensity.org.uk/intensity/" + formatted_datetime + "/fw48h"
     )
-    # Test url: https://api.carbonintensity.org.uk/intensity/2024-06-04T14:30Z/fw24h
+    # This gets the forecasted national grid carbon intensity for the next 48 hours
+    # Test url: https://api.carbonintensity.org.uk/intensity/2024-06-04T14:30Z/fw48h
     response = requests.get(url, timeout=10)
     data = json.loads(response.content)
     if "data" not in data:
