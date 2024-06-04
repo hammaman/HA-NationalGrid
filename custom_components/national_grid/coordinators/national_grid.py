@@ -969,6 +969,7 @@ def get_carbon_intensity_forecast(now_utc_full: datetime) -> NationalGridCarbonI
     url = (
         "https://api.carbonintensity.org.uk/intensity/" + formatted_datetime + "/fw24h"
     )
+    # Test url: https://api.carbonintensity.org.uk/intensity/2024-06-04T14:30Z/fw24h
     response = requests.get(url, timeout=10)
     data = json.loads(response.content)
     if "data" not in data:
@@ -982,7 +983,8 @@ def get_carbon_intensity_forecast(now_utc_full: datetime) -> NationalGridCarbonI
                 start_time=datetime.strptime(
                 item["from"], "%Y-%m-%dT%H:%M"
                 ).replace(tzinfo=tz.UTC),
-                forecastintensity=item["intensity"]["forecast"]))
+                carbon_intensity=item["intensity"]["forecast"]))
+            _LOGGER.debug(msg="Found forecast intensity" + str(item["intensity"]["forecast"]))
 
     return ci_forecast
 
