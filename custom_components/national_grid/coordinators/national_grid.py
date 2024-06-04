@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import io
 import json
 import logging
-from typing import Any
+from typing import Any, Tuple, List, Dict, Union
 
 from _collections_abc import Mapping
 from dateutil import tz
@@ -986,9 +986,9 @@ def get_carbon_intensity_forecast(now_utc_full: datetime) -> NationalGridCarbonI
                 carbon_intensity=item["intensity"]["forecast"]))
             _LOGGER.debug(msg="Found forecast intensity" + str(item["intensity"]["forecast"]))
 
-    current_value = get_carbon_intensity(now_utc_full)
+    currentvalue = get_carbon_intensity(now_utc_full)
 
-    return (current_value, ci_forecast)
+    return NationalGridCarbonIntensityForecast(current_value=currentvalue, forecast=ci_forecast)
 
 # End of new functionality
 
